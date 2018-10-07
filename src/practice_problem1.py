@@ -5,8 +5,8 @@ This problem provides practice at:
   ***  IMPLEMENTING CLASSES.  ***
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Brandon Hao.
+"""  # TOO: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 ########################################################################
 # Students:
@@ -39,13 +39,13 @@ def main():
     # UN-comment tests as you work the problems.
     ####################################################################
 
-#     run_test_init()
-#     run_test_append_string()
-#     run_test_double()
-#     run_test_shrink()
-#     run_test_double_then_shrink()
-#     run_test_reset()
-#     run_test_steal()
+    run_test_init()
+    run_test_append_string()
+    run_test_double()
+    run_test_shrink()
+    run_test_double_then_shrink()
+    run_test_reset()
+    run_test_steal()
 #     run_test_get_history()
 #     run_test_combined_box()
 
@@ -94,7 +94,7 @@ class Box(object):
           :type volume: int
         """
         # --------------------------------------------------------------
-        # TODO: 2. Implement and test this function.
+        # TOD: 2. Implement and test this function.
         #     See the testing code (below) for more examples.
         # --------------------------------------------------------------
         # --------------------------------------------------------------
@@ -102,6 +102,14 @@ class Box(object):
         #    DIFFICULTY:      3
         #    TIME ESTIMATE:   5 minutes.
         # --------------------------------------------------------------
+        self.volume = volume
+        self.contents = ''
+        if len(contents) <= self.volume:
+            self.contents = contents
+        self.add = ''
+        self.cut = ''
+        self.resetcont = self.contents
+        self.resetvol = self.volume
 
     def append_string(self, additional_contents):
         """
@@ -134,8 +142,18 @@ class Box(object):
         Type hints:
           :type additional_contents: str
         """
+        n = self.volume - len(self.contents)
+        if len(additional_contents) <= n:
+            self.contents = self.contents + additional_contents
+        else:
+            for k in range(n):
+                self.contents = self.contents + additional_contents[k]
+            for k in range(self.volume - len(self.contents) + n, len(additional_contents)):
+                self.add = self.add + additional_contents[k]
+
+        return self.add
         # --------------------------------------------------------------
-        # TODO: 3. Implement and test this function.
+        # TOO: 3. Implement and test this function.
         #     See the testing code (below) for more examples.
         # --------------------------------------------------------------
         # --------------------------------------------------------------
@@ -190,8 +208,11 @@ class Box(object):
           #   s is 'Robot Fun'   [this is the part of the doubled
           #                       contents that did NOT fit]
         """
+        self.append_string(self.contents)
+        return self.add
+
         # --------------------------------------------------------------
-        # TODO: 4. Implement and test this function.
+        # TOO: 4. Implement and test this function.
         #     The testing code is already written for you (above).
         # --------------------------------------------------------------
         # --------------------------------------------------------------
@@ -240,7 +261,7 @@ class Box(object):
           :type new_volume: int
         """
         # --------------------------------------------------------------
-        # TODO: 5. Implement and test this function.
+        # TOO: 5. Implement and test this function.
         #     The testing code is already written for you (above).
         # --------------------------------------------------------------
         # --------------------------------------------------------------
@@ -251,6 +272,17 @@ class Box(object):
         # IMPORTANT: Write a solution to this problem in pseudo-code,
         # and THEN translate the pseudo-code to a solution.
         # --------------------------------------------------------------
+        self.volume = new_volume
+        q = ''
+        p = self.contents
+        if len(self.contents) > new_volume:
+            for k in range(new_volume, len(self.contents)):
+                self.cut = self.cut + self.contents[k]
+            for k in range(new_volume):
+                q = q + p[k]
+            self.contents = q
+
+        return self.cut
 
     def double_then_shrink(self, new_volume):
         """
@@ -296,7 +328,7 @@ class Box(object):
           :type new_volume: int
         """
         # --------------------------------------------------------------
-        # TODO: 6. Implement and test this function.
+        # TDO: 6. Implement and test this function.
         #     The testing code is already written for you (above).
         # --------------------------------------------------------------
         # --------------------------------------------------------------
@@ -304,6 +336,11 @@ class Box(object):
         #    DIFFICULTY:      5
         #    TIME ESTIMATE:   5 minutes.
         # --------------------------------------------------------------
+        n = 2*len(self.contents)
+        self.double()
+        self.shrink(new_volume)
+
+        return n - len(self.contents)
 
     def reset(self):
         """
@@ -323,6 +360,8 @@ class Box(object):
         #    DIFFICULTY:      4
         #    TIME ESTIMATE:   5 minutes.
         # --------------------------------------------------------------
+        self.contents = self.resetcont
+        self.volume = self.resetvol
 
     def steal(self, other_box):
         """
@@ -342,6 +381,7 @@ class Box(object):
         Type hints:
           :type other_box: Box
         """
+        
         # --------------------------------------------------------------
         # TODO: 8. Implement and test this function.
         #     The testing code is already written for you (above).
