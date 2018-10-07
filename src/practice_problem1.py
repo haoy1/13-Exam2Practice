@@ -46,8 +46,8 @@ def main():
     run_test_double_then_shrink()
     run_test_reset()
     run_test_steal()
-#     run_test_get_history()
-#     run_test_combined_box()
+    run_test_get_history()
+    run_test_combined_box()
 
 
 ########################################################################
@@ -110,6 +110,7 @@ class Box(object):
         self.cut = ''
         self.resetcont = self.contents
         self.resetvol = self.volume
+        self.count = []
 
     def append_string(self, additional_contents):
         """
@@ -209,6 +210,7 @@ class Box(object):
           #                       contents that did NOT fit]
         """
         self.append_string(self.contents)
+
         return self.add
 
         # --------------------------------------------------------------
@@ -352,7 +354,7 @@ class Box(object):
           when this Box was constructed.
         """
         # --------------------------------------------------------------
-        # TODO: 7. Implement and test this function.
+        # TOO: 7. Implement and test this function.
         #     The testing code is already written for you (above).
         # --------------------------------------------------------------
         # --------------------------------------------------------------
@@ -360,6 +362,7 @@ class Box(object):
         #    DIFFICULTY:      4
         #    TIME ESTIMATE:   5 minutes.
         # --------------------------------------------------------------
+        self.count = self.contents
         self.contents = self.resetcont
         self.volume = self.resetvol
 
@@ -381,9 +384,11 @@ class Box(object):
         Type hints:
           :type other_box: Box
         """
-        
+        self.reset()
+        self.append_string(other_box.contents)
+        other_box.contents = self.add
         # --------------------------------------------------------------
-        # TODO: 8. Implement and test this function.
+        # TOO: 8. Implement and test this function.
         #     The testing code is already written for you (above).
         # --------------------------------------------------------------
         # --------------------------------------------------------------
@@ -434,6 +439,7 @@ class Box(object):
         #    DIFFICULTY:      6
         #    TIME ESTIMATE:   5 minutes.
         # --------------------------------------------------------------
+        return self.count
 
     def combined_box(self, other_box):
         """
@@ -452,7 +458,7 @@ class Box(object):
           :type other_box: Box
         """
         # --------------------------------------------------------------
-        # TODO: 10. Implement and test this function.
+        # TOO: 10. Implement and test this function.
         #     The testing code is already written for you (above).
         # --------------------------------------------------------------
         # --------------------------------------------------------------
@@ -460,11 +466,15 @@ class Box(object):
         #    DIFFICULTY:      4
         #    TIME ESTIMATE:   5 minutes.
         # --------------------------------------------------------------
-
-
+        new_box = Box('', 0)
+        new_box.contents = self.contents + other_box.contents
+        new_box.volume = self.volume + other_box.volume
+        return new_box
 ########################################################################
 # The TEST functions for the  Box  class begin here.
 ########################################################################
+
+
 def run_test_init():
     """ Tests the   __init__   method of the Box class. """
     print()
