@@ -2,8 +2,8 @@
 PRACTICE Test 2, practice_problem 2.
 
 Authors: David Mutchler, Dave Fisher, Valerie Galluzzi, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Brandon Hao.
+"""  # TDO: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 ########################################################################
 # Students:
@@ -42,7 +42,7 @@ def main():
 def run_test_practice_problem2a():
     """ Tests the   practice_problem2a  function. """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement this TEST function.
+    # TOO: 2. Implement this TEST function.
     #   It TESTS the  practice_problem2a  function defined below.
     #   Include at least **   4 reasonable   ** tests.
     #
@@ -54,8 +54,33 @@ def run_test_practice_problem2a():
     print()
     print('--------------------------------------------------')
     print('Testing the   practice_problem2a   function:')
-    print('--------------------------------------------------')
+    print('----------------Test 1-------------------')
+    sequence = [1, 2, 3]
+    delta = 3
+    actuall = practice_problem2a(sequence, delta)
+    print('actuall=', actuall)
+    print('expected=[4, 5, 6]')
 
+    print('----------------Test 2-------------------')
+    sequence = [4, 5, 6, 7]
+    delta = 1
+    actuall = practice_problem2a(sequence, delta)
+    print('actuall=', actuall)
+    print('expected=[5, 6, 7, 8]')
+
+    print('----------------Test 3-------------------')
+    sequence = [0, 1, 2]
+    delta = 10
+    actuall = practice_problem2a(sequence, delta)
+    print('actuall=', actuall)
+    print('expected=[10, 11, 12]')
+
+    print('----------------Test 4-------------------')
+    sequence = [10, 11, 3]
+    delta = 3
+    actuall = practice_problem2a(sequence, delta)
+    print('actuall=', actuall)
+    print('expected=[13, 14, 6]')
 
 def practice_problem2a(sequence, delta):
     """
@@ -75,8 +100,15 @@ def practice_problem2a(sequence, delta):
       :type sequence: [int]
       :type delta:    int
     """
+
+    for k in range(len(sequence)):
+        sequence[k] = sequence[k] + delta
+
+    new_sequence = sequence
+
+    return new_sequence
     ####################################################################
-    # TODO: 3. Implement and test this function.
+    # TOO: 3. Implement and test this function.
     #     The testing code is already written for you (above).
     ####################################################################
     # DIFFICULTY AND TIME RATINGS (see top of this file for explanation)
@@ -169,8 +201,14 @@ def practice_problem2b(sequence):
     Type hints:
       :type sequence [str]
     """
+    new_list = ''
+    for k in range(len(sequence)):
+        if sequence[k] is not '':
+            new_list = new_list + sequence[k][0]
+
+    return new_list
     ####################################################################
-    # TODO: 4. Implement and test this function.
+    # ODO: 4. Implement and test this function.
     #     The testing code is already written for you (above).
     ####################################################################
     # DIFFICULTY AND TIME RATINGS (see top of this file for explanation)
