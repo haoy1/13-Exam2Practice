@@ -200,7 +200,7 @@ def practice_problem2b(sequence):
        Given ('my very long string', 'ok', 'mmmm') returns 'mom'
     Type hints:
       :type sequence [str]
-    """
+    """ 
     new_list = ''
     for k in range(len(sequence)):
         if sequence[k] is not '':
